@@ -10,6 +10,14 @@ class AuthController {
 
     return await UserService.register(dataRequest);
   }
+
+  async authenticate({request, auth}) {
+
+    const {email, password } = request.all()
+    
+    return await auth.attempt(email, password);
+  }
+
 }
 
 module.exports = AuthController
