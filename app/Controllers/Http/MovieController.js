@@ -2,7 +2,6 @@
 
 const MovieService = use('App/Services/MovieService');
 
-
 class MovieController {
     
     async list({request}) {
