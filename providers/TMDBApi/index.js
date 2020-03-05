@@ -30,6 +30,22 @@ class Tmdb {
             });
     }
 
+    async getGenreMovies() {
+
+        const urlRequest = this.Config.get('tmdbapi.uri') + 'genre/movie/list' +
+            this.getApiKey();
+
+        return await axios.get(urlRequest)
+            .then(function (response) {
+                return response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+
+                return false;
+            });
+    }
+
     getApiKey() {
         return '?api_key=' + this.setApiKey();
     }
