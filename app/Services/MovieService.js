@@ -25,25 +25,52 @@ class MovieService {
     const movieRawRequest = await TmdbMovies.getUpcommingMovies(page);
 
     if (!movieRawRequest) {
-      return [];
+      return new UpcommingDTO(1, 0, []);
     }
 
-    let listPaged = new UpcommingDTO(
-      movieRawRequest.page,
-      movieRawRequest.total_pages
-    );
+    return this.cretePagedMovieResults(movieRawRequest);
+  }
 
-    const genresMoviesTmdbRaw = await TmdbMovies.getGenreMovies();
+  /**
+   * Search movies by string query
+   * 
+   * @param {string} searchQuery 
+   */
+  async search(searchQuery) {
 
-    const moviesResult = movieRawRequest.results;
+    const resultSearch = await TmdbMovies.searchMovies(searchQuery);
 
-    const moviesArray = moviesResult.map(
-      (movie) => this.createMovie(movie, genresMoviesTmdbRaw.genres)
-    );
+    if (!resultSearch) {
+      return new UpcommingDTO(1, 0, []);
+    }
+    
+    return this.cretePagedMovieResults(resultSearch);
+  }
 
-    listPaged.result = moviesArray;
+  /**
+   * Transform the raw result from provider in
+   * a paged result object
+   * 
+   * @param {object} rawResult 
+   */
+  async cretePagedMovieResults(rawResult) {
 
-    return listPaged;
+      let listPaged = new UpcommingDTO(
+        rawResult.page,
+        rawResult.total_pages
+      );
+
+      const genresMoviesTmdbRaw = await TmdbMovies.getGenreMovies();
+
+      const moviesResult = rawResult.results;
+
+      const moviesArray = moviesResult.map(
+        (movie) => this.createMovie(movie, genresMoviesTmdbRaw.genres)
+      );
+
+      listPaged.result = moviesArray;
+
+      return listPaged;
   }
 
   /**

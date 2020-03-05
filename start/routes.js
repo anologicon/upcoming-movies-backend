@@ -19,4 +19,5 @@ const Route = use('Route')
 Route.post('/register', 'AuthController.register');
 Route.post('/authenticate', 'AuthController.authenticate');
 
-Route.get('/', 'MovieController.list');
+Route.get('/', 'MovieController.list').middleware(['auth']);
+Route.get('/search', 'MovieController.search').middleware(['auth']);

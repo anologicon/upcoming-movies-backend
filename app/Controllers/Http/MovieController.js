@@ -11,6 +11,13 @@ class MovieController {
 
         return await MovieService.upCommingMovies(page);
     }
+
+    async search({ request }) {
+
+        const { query } = request.get(['query']);
+
+        return await MovieService.search(query);
+    }
 }
 
 module.exports = MovieController
