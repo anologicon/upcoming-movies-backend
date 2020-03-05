@@ -2,8 +2,6 @@
 
 const axios = use('axios');
 
-const Env = use('Env');
-
 class Tmdb {
 
     constructor(Config) {
