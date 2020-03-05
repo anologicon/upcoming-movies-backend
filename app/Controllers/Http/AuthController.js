@@ -8,6 +8,9 @@ class AuthController {
 
     const dataRequest = request.only(["username", "email", "password"]);
 
+    console.log(dataRequest);
+    
+
     return await UserService.register(dataRequest);
   }
 
