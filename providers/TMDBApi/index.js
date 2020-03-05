@@ -1,22 +1,41 @@
 'use strict'
 
-const axios = require('axios');
+const axios = use('axios');
+
+const Env = use('Env');
 
 class Tmdb {
+
     constructor(Config) {
         this.Config = Config
     }
 
-    async getHomeMovies() {
-        return await axios.get('https://api.themoviedb.org/3/discover/movie?api_key=1f54bd990f1cdfb230adb312546d765d&language=pt-BR&sort_by=release_date.desc&include_adult=false&include_video=false')
+    async getUpcommingMovies(page = 1) {
+        
+        const urlRequest = this.Config.get('tmdbapi.uri') + 'discover/movie' +
+            this.getApiKey() +
+            '&sort_by=release_date.desc' +
+            '&include_adult=false' +
+            '&include_video=false' +
+            '&page=' + page;
+
+        return await axios.get(urlRequest)
             .then(function (response) {
-                // handle success
                 return response.data;
             })
             .catch(function (error) {
-                // handle error
                 console.log(error);
+
+                return false;
             });
+    }
+
+    getApiKey() {
+        return '?api_key=' + this.setApiKey();
+    }
+
+    setApiKey() {
+        return this.Config.get('tmdbapi.apiKey');
     }
 }
 

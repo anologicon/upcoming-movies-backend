@@ -1,12 +1,15 @@
 'use strict'
 
-const TmdbMovies = use('Tmdb/Movies');
+const MovieService = use('App/Services/MovieService');
 
 
 class MovieController {
     
     async list({request}) {
-        return await TmdbMovies.getHomeMovies();
+
+        const { page } = request.get(['page']);
+
+        return await MovieService.upCommingMovies(page);
     }
 }
 
