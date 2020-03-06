@@ -1,6 +1,6 @@
 'use strict';
 
-class Upcomming {
+class Upcoming {
     
     constructor(page, totalPages, result) {
         this.page = page;
@@ -11,4 +11,4 @@ class Upcomming {
     }
 }
 
-module.exports = Upcomming;
+module.exports = Upcoming;

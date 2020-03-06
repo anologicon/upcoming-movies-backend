@@ -8,7 +8,7 @@ class MovieController {
 
         const { page } = request.get(['page']);
 
-        return await MovieService.upCommingMovies(page);
+        return await MovieService.upcomingMovies(page);
     }
 
     async search({ request }) {

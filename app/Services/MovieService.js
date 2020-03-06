@@ -2,7 +2,7 @@
 
 const TmdbMovies = use('Tmdb/Movies');
 
-const UpcommingDTO = use ('App/DTO/Movie/Upcomming');
+const UpcomingDTO = use ('App/DTO/Movie/Upcoming');
 
 const MovieDTO = use('App/DTO/Movie');
 
@@ -16,16 +16,16 @@ class MovieService {
   }
 
   /**
-   * Get all upcomming movies from TMDBApi
+   * Get all upcoming movies from TMDBApi
    * 
    * @param {int} page 
    */
-  async upCommingMovies(page = 1) {
+  async upcomingMovies(page = 1) {
 
-    const movieRawRequest = await TmdbMovies.getUpcommingMovies(page);
+    const movieRawRequest = await TmdbMovies.getUpcomingMovies(page);
 
     if (!movieRawRequest) {
-      return new UpcommingDTO(1, 0, []);
+      return new UpcomingDTO(1, 0, []);
     }
 
     return this.cretePagedMovieResults(movieRawRequest);
@@ -41,7 +41,7 @@ class MovieService {
     const resultSearch = await TmdbMovies.searchMovies(searchQuery);
 
     if (!resultSearch) {
-      return new UpcommingDTO(1, 0, []);
+      return new UpcomingDTO(1, 0, []);
     }
     
     return this.cretePagedMovieResults(resultSearch);
@@ -55,7 +55,7 @@ class MovieService {
    */
   async cretePagedMovieResults(rawResult) {
 
-      let listPaged = new UpcommingDTO(
+      let listPaged = new UpcomingDTO(
         rawResult.page,
         rawResult.total_pages
       );
@@ -91,7 +91,7 @@ class MovieService {
 
   /**
    * Find genders for movie, by genders has
-   * comming from API
+   * coming from API
    * 
    * @param {array} movieGendersI Array with genres off actual movie
    * @param {array} genresTmdb Array with all genders from API

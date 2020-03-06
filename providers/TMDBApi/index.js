@@ -9,11 +9,11 @@ class Tmdb {
     }
 
     /**
-     * Request upcomming movies
+     * Request upcoming movies
      * 
      * @param {int} page The actual page
      */
-    async getUpcommingMovies(page = 1) {
+    async getUpcomingMovies(page = 1) {
         
         const urlRequest = this.Config.get('tmdbapi.uri') + 'discover/movie' +
             this.getApiKey() +
