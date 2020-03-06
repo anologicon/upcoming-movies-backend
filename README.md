@@ -2,9 +2,11 @@
 
 ### Approach
 
-The chalenge for that project it's build a simple architecture, and connect to a an movie API called TMDB APi. The </br> project have 2 repositories, one for back-end and other for the front-end.The front-end was builded with ReactJs</br>
-with desing helper react material ui core. The back-end was used NodeJs with the frame-work AdonisJs, Adonis provide a</br>
-a banche of tools, was uses Authentication and migration from AdonisJs. And the database Postgres, the database was used to save the API users, and theirs token's.
+The challenge for that project it's build a simple architecture, and connect to a an movie API called TMDB APi. The </br> project have 2 repositories, one for back-end and other for the front-end.The front-end was builded with ReactJs</br>
+and was used material ui for react, to build the UI. The back-end was used Node Js with the framework AdonisJs. Adonis provide a banch of tools, was uses Authentication and migration from AdonisJs. and the database Postgres, the database was used to save the API users, and their tokens.
+
+The [front-end](https://github.com/anologicon/upcoming-movies-frontend/tree/master) it's hosted on [netlify](https://www.netlify.com/). </br>
+The back-end it's hosted on [heroku](https://www.heroku.com/)
 
 ### Architecture
 
@@ -57,4 +59,4 @@ adonis serve --dev
 
 Now, the api it's running, and you can use the por `3333` to connect.</br>
 
-connect to [http://localhost:3333](http://localhost:3333)
+Running in [http://localhost:3333](http://localhost:3333)
