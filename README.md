@@ -22,7 +22,7 @@ a banche of tools, was uses Authentication and migration from AdonisJs. And the 
 
 - `AdonisJs` - The nodejs frame-works. </br>
 - `Axios` - Library to make HTTP requests. </br>
-- `pg` - Used to connect to the Postgres database.</br
+- `pg` - Used to connect to the Postgres database.</br>
 - `url-parse` - Used to parse the url, to brake the one url string in parâmeters.</br>
 
 ### Run in localhost
