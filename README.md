@@ -52,10 +52,111 @@ Then run the migrations service with adonis cli:
 adonis migration:run
 ```
 
-And finaly start the adonis in dev mode:
+And start the adonis in dev mode:
 ```bash
 adonis serve --dev
 ```
+Register your user on the end-point `/register`, the body needed:
+```
+{
+	"username": "yout-user-name",
+	"email": "your-email",
+	"password": "your-password"
+}
+```
+
+Get your token accessing the end-point `/authenticate`, the body needed:
+```
+{
+	"email": "yout-user-name",
+	"password": "your-password"
+}
+```
+
+You will recive the body with a property `token`.
+
+### End-points
+
+**Register user**
+- uri: `/register`
+- method: `POST`
+- body: 
+```
+{
+	"username": "yout-user-name",
+	"email": "your-email",
+	"password": "your-password"
+}
+```
+**Get token**
+- uri: `/authenticate`
+- method: `POST`
+- body: 
+```
+{
+	"email": "your-email",
+	"password": "your-password"
+}
+```
+- response:
+```
+{
+  "type": "bearer",
+  "token": "yout-token-hear",
+  "refreshToken": null
+}
+```
+
+**Get all upcoming movies, order by release date**
+- uri: `[/]`
+- method: `GET`
+- parameters: 
+  - `page`: `int`, the number of page requested.
+  - `Authorization`: `yout bearer token`
+- response:
+```
+{
+  "page": 5,
+  "totalPages": 500,
+  "result": [
+    {
+      "title": "O2",
+      "releaseDate": "2021-12-31",
+      "poster": null,
+      "overview": "A woman wakes up inside a cryogenic chamber with no memory of how she got there and must escape before her air runs out.",
+      "genders": [
+        "Science Fiction",
+        "Thriller"
+      ]
+    }
+]
+```
+**Search movies, by a query parâmeter**
+- uri: `/search`
+- method: `GET`
+- parameters: 
+  - `query`: `string`, The title of movie.
+  - `Authorization`: `yout bearer token`
+- response:
+```
+{
+  "page": 1,
+  "totalPages": 7,
+  "result": [
+    {
+      "title": "Star Wars",
+      "releaseDate": "1977-05-25",
+      "poster": "/btTdmkgIvOi0FFip1sPuZI2oQG6.jpg",
+      "overview": "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
+      "genders": [
+        "Action",
+        "Adventure",
+        "Science Fiction"
+      ]
+    }
+]
+```
+
 
 Now, the api it's running, and you can use the por `3333` to connect.</br>
 
